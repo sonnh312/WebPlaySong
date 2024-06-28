@@ -8,13 +8,14 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "playlists")
+@Document(collection = "likes")
 @Data //getter,setter,toString method
 @AllArgsConstructor//constructor
 @NoArgsConstructor
-public class Playlist {
+public class LikeTrack {
     @Id
     private ObjectId id;
-    private String name;
+    private String title;
+
 
 }

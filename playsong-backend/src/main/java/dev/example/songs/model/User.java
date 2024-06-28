@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import java.util.List;
 
@@ -15,48 +16,20 @@ import java.util.List;
 @NoArgsConstructor //another constructor taken no parameter
 public class User {
     @Id
-    private String id;
+    private ObjectId id;
+    private String imdbId;
     private String username;
     private String email;
-    private String password_hash;
-    private String profile_picture_url;
-    private String created_at;
+    private String password;
+    private String profilePictureUrl;
+    private String createdAt;
+
+    @DocumentReference
+    private List<Song> songs;
     private List<Playlist> playlists;
-    private List<LikedTrack> liked_tracks;
-    private List<Follow> follows;
+    private List<LikeTrack> likedTracks;
+    private List<Review> reviews;
+    private List<String> genres;
 
-    @Data
-    @AllArgsConstructor
-    @NoArgsConstructor
-    public static class Playlist {
-        private ObjectId playlist_id;
-        private String title;
-        private String description;
-        private List<TrackReference> tracks;
-        private String created_at;
-    }
 
-    @Data
-    @AllArgsConstructor
-    @NoArgsConstructor
-    public static class LikedTrack {
-        private ObjectId track_id;
-        private String liked_at;
-    }
-
-    @Data
-    @AllArgsConstructor
-    @NoArgsConstructor
-    public static class Follow {
-        private ObjectId artist_id;
-        private String followed_at;
-    }
-
-    @Data
-    @AllArgsConstructor
-    @NoArgsConstructor
-    public static class TrackReference {
-        private ObjectId track_id;
-        private String added_at;
-    }
 }
